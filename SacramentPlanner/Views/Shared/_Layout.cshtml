@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SacramentPlanner</title>
+    <title>@ViewData["Title"] - Sacrament Meeting Planner</title>
 
+    <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/bootstrap-float-label/v4.0.2/bootstrap-float-label.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Bilbo|Pontano+Sans|Italianno|Oxygen" rel="stylesheet">
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -26,13 +28,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">SacramentPlanner</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Sacrament Planner</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="SacramentMeetings" asp-action="Index">Planner</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -40,9 +42,9 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        <hr/>
         <footer>
-            <p>&copy; 2018 - SacramentPlanner</p>
+            <p>&copy; 2018 - Sacrament Meeting Planner</p>
         </footer>
     </div>
 

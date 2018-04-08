@@ -1,0 +1,99 @@
+﻿@model SacramentPlanner.Models.SacramentMeeting
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SacramentMeeting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MeetingDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialNote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SpecialNote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ConductorName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ConductorName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningSongNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OpeningSongNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningSongTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OpeningSongTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningPrayerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OpeningPrayerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SacramentSongNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SacramentSongNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SacramentSongTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SacramentSongTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IntermediateSongNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IntermediateSongNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IntermediateSongTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IntermediateSongTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosingSongNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClosingSongNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosingSongTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClosingSongTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosingPrayerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClosingPrayerName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
