@@ -1,0 +1,49 @@
+﻿@model SacramentPlanner.Models.SpeakingAssignment
+
+@{
+    ViewData["Title"] = "Create Speaking Assignment";
+}
+
+<h2>Create</h2>
+
+<h4>SpeakingAssignment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SacramentMeetingID" class="control-label"></label>
+                <!-- <select asp-for="SacramentMeetingID" class="form-control" asp-items="ViewBag.SacramentMeetingID"></select> -->
+                <input asp-for="SacramentMeetingID" class="form-control" value="@ViewBag.SacramentMeetingID" readonly>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedOnDate" class="control-label"></label>
+                <input asp-for="AssignedOnDate" class="form-control" />
+                <span asp-validation-for="AssignedOnDate" class="text-danger"></span>
+            </div>
+  
+            <div class="form-group">
+                <label asp-for="SpeakerName" class="control-label"></label>
+                <input asp-for="SpeakerName" class="form-control" />
+                <span asp-validation-for="SpeakerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedTopic" class="control-label"></label>
+                <input asp-for="AssignedTopic" class="form-control" />
+                <span asp-validation-for="AssignedTopic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SacramentPlanner.Models.SpeakingAssignment>
+
+@{
+    ViewData["Title"] = "Speaking Assignements";
+    DateTime meetingDate = Convert.ToDateTime(Model.ElementAt(0).SacramentMeeting.MeetingDate);
+}
+
+<h2>Speaking Assignments for @meetingDate.ToString("MM/dd/yyyy")</h2>
+
+<p>
+    <a asp-action="Create" asp-route-id="@Model.ElementAt(0).SacramentMeetingID">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedOnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpeakingSequence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpeakerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedTopic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentMeeting)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedOnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeakingSequence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeakerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedTopic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SacramentMeeting.ID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
