@@ -20,18 +20,14 @@ namespace SacramentPlanner.Controllers
         }
 
         // GET: SpeakingAssignments
-        public async Task<IActionResult> Index(
-            int currentFilter,
-            int searchID)
+        public async Task<IActionResult> Index(int? id)
         {
-            searchID = currentFilter;
-            ViewData["CurrentFilter"] = searchID;
 
             var speakingAssignments = from s in _context.SpeakingAssignments select s;
 
-            if (searchID != 0)
+            if (id != 0)
             {
-                speakingAssignments = speakingAssignments.Where(s => s.SacramentMeetingID.Equals(searchID));
+                speakingAssignments = speakingAssignments.Where(s => s.SacramentMeetingID.Equals(id));
             }
 
             speakingAssignments = speakingAssignments.OrderBy(s => s.SpeakingSequence);

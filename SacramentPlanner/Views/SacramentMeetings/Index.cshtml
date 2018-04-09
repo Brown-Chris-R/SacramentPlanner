@@ -62,7 +62,7 @@
                 </td>
                 <td>
                     @if (item.Speakers.Count > 0)
-                    {@Html.DisplayFor(modelItem => item.Speakers.Count)}
+                    { <a asp-area="" asp-controller="SpeakingAssignments" asp-action="Index" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Speakers.Count)</a> }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ClosingPrayerName)
