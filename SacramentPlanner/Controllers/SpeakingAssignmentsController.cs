@@ -85,13 +85,13 @@ namespace SacramentPlanner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,SacramentMeetingID,AssignedOnDate,SpeakerName,AssignedTopic")] SpeakingAssignment speakingAssignment)
+        public async Task<IActionResult> Create([Bind("ID,SacramentMeetingID,AssignedOnDate,SpeakingSequence,SpeakerName,AssignedTopic")] SpeakingAssignment speakingAssignment)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(speakingAssignment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { id = speakingAssignment.SacramentMeetingID });
             }
             ViewData["SacramentMeetingID"] = new SelectList(_context.SacramentMeetings, "ID", "ID", speakingAssignment.SacramentMeetingID);
             return View(speakingAssignment);
@@ -119,7 +119,7 @@ namespace SacramentPlanner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,SacramentMeetingID,AssignedOnDate,SpeakerName,AssignedTopic")] SpeakingAssignment speakingAssignment)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,SacramentMeetingID,AssignedOnDate,SpeakingSequence,SpeakerName,AssignedTopic")] SpeakingAssignment speakingAssignment)
         {
             if (id != speakingAssignment.ID)
             {
@@ -144,7 +144,7 @@ namespace SacramentPlanner.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { id = speakingAssignment.SacramentMeetingID });
             }
             ViewData["SacramentMeetingID"] = new SelectList(_context.SacramentMeetings, "ID", "ID", speakingAssignment.SacramentMeetingID);
             return View(speakingAssignment);
@@ -177,7 +177,7 @@ namespace SacramentPlanner.Controllers
             var speakingAssignment = await _context.SpeakingAssignments.SingleOrDefaultAsync(m => m.ID == id);
             _context.SpeakingAssignments.Remove(speakingAssignment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { id = speakingAssignment.SacramentMeetingID });
         }
 
         private bool SpeakingAssignmentExists(int id)

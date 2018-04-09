@@ -31,12 +31,12 @@ namespace SacramentPlanner.Models
         [Display(Name = "Sacrament Hymn")]
         public string SacramentSongTitle { get; set; }
         public ICollection<SpeakingAssignment> Speakers { get; set; }
-        [Range(1, 341)]
+        [Range(0, 341)]
         [Display(Name = "Rest Hymn #")]
         public int IntermediateSongNumber { get; set; }
         [Display(Name = "Rest Hymn")]
         public string IntermediateSongTitle { get; set; }
-        [Range(1, 100)]
+        [Range(1, 341)]
         [Display(Name = "Closing Hymn #")]
         public int ClosingSongNumber { get; set; }
         [Display(Name = "Closing Hymn")]
