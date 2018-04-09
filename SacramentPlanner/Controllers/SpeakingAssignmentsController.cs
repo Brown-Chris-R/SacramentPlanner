@@ -20,10 +20,23 @@ namespace SacramentPlanner.Controllers
         }
 
         // GET: SpeakingAssignments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+            int currentFilter,
+            int searchID)
         {
-            var applicationDbContext = _context.SpeakingAssignments.Include(s => s.SacramentMeeting);
-            return View(await applicationDbContext.ToListAsync());
+            searchID = currentFilter;
+            ViewData["CurrentFilter"] = searchID;
+
+            var speakingAssignments = from s in _context.SpeakingAssignments select s;
+
+            if (searchID != 0)
+            {
+                speakingAssignments = speakingAssignments.Where(s => s.SacramentMeetingID.Equals(searchID));
+            }
+
+            speakingAssignments = speakingAssignments.OrderBy(s => s.SpeakingSequence);
+
+            return View(await speakingAssignments.Include(s => s.SacramentMeeting).ToListAsync());
         }
 
         // GET: SpeakingAssignments/Details/5
@@ -46,9 +59,10 @@ namespace SacramentPlanner.Controllers
         }
 
         // GET: SpeakingAssignments/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["SacramentMeetingID"] = new SelectList(_context.SacramentMeetings, "ID", "ID");
+            // ViewData["SacramentMeetingID"] = new SelectList(_context.SacramentMeetings, "ID", "ID");
+            ViewData["SacramentMeetingID"] = id;
             return View();
         }
 
@@ -77,7 +91,7 @@ namespace SacramentPlanner.Controllers
                 return NotFound();
             }
 
-            var speakingAssignment = await _context.SpeakingAssignments.SingleOrDefaultAsync(m => m.ID == id);
+            var speakingAssignment = await _context.SpeakingAssignments.Include(s => s.SacramentMeeting).SingleOrDefaultAsync(m => m.ID == id);
             if (speakingAssignment == null)
             {
                 return NotFound();

@@ -1,26 +1,30 @@
 ﻿@model IEnumerable<SacramentPlanner.Models.SpeakingAssignment>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Speaking Assignements";
+    DateTime meetingDate = Convert.ToDateTime(Model.ElementAt(0).SacramentMeeting.MeetingDate);
 }
 
-<h2>Index</h2>
+<h2>Speaking Assignments for @meetingDate.ToString("MM/dd/yyyy")</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-id="@Model.ElementAt(0).SacramentMeetingID">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.AssignedOnDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SpeakerName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AssignedTopic)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedOnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpeakingSequence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpeakerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedTopic)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.SacramentMeeting)
             </th>
@@ -32,6 +36,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AssignedOnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpeakingSequence)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SpeakerName)

@@ -12,10 +12,28 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.SacramentMeeting)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SacramentMeeting.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SacramentMeeting.MeetingDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SacramentMeeting.MeetingDate)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.AssignedOnDate)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.AssignedOnDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeakingSequence)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SpeakingSequence)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.SpeakerName)
@@ -28,12 +46,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.AssignedTopic)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SacramentMeeting)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SacramentMeeting.ID)
         </dd>
     </dl>
     

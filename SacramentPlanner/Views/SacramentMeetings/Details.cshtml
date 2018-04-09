@@ -70,7 +70,7 @@
                     <th>Topic</th>
                     <th>Assigned On</th>
                 </tr>
-                @foreach (var item in Model.Speakers)
+                @foreach (var item in Model.Speakers.OrderBy(s => s.SpeakingSequence))
                 {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.SpeakerName)</td>
