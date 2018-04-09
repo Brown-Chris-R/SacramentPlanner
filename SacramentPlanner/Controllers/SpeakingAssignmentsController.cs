@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using SacramentPlanner.Models;
 
 namespace SacramentPlanner.Controllers
 {
+    [Authorize]
     public class SpeakingAssignmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -31,6 +33,11 @@ namespace SacramentPlanner.Controllers
             }
 
             speakingAssignments = speakingAssignments.OrderBy(s => s.SpeakingSequence);
+            if (speakingAssignments == null)
+            {
+                return NotFound();
+            }
+            ViewData["SacramentMeetingID"] = id;
 
             return View(await speakingAssignments.Include(s => s.SacramentMeeting).ToListAsync());
         }
@@ -57,9 +64,20 @@ namespace SacramentPlanner.Controllers
         // GET: SpeakingAssignments/Create
         public IActionResult Create(int? id)
         {
-            // ViewData["SacramentMeetingID"] = new SelectList(_context.SacramentMeetings, "ID", "ID");
+            var speakingAssignment = new SpeakingAssignment();
+            speakingAssignment.AssignedOnDate = DateTime.Now;
+            speakingAssignment.SacramentMeetingID = id.Value;
             ViewData["SacramentMeetingID"] = id;
-            return View();
+
+            var sacramentMeeting = _context.SacramentMeetings.SingleOrDefaultAsync(s => s.ID == id);
+            if (sacramentMeeting == null)
+            {
+                return NotFound();
+            }
+            speakingAssignment.SacramentMeeting = new SacramentMeeting();
+
+            speakingAssignment.SacramentMeeting.MeetingDate = sacramentMeeting.Result.MeetingDate;
+            return View(speakingAssignment);
         }
 
         // POST: SpeakingAssignments/Create

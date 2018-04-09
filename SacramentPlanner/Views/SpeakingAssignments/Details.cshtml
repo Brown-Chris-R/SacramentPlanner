@@ -1,27 +1,16 @@
 ﻿@model SacramentPlanner.Models.SpeakingAssignment
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details - Speaking Assignment";
+    DateTime meetingDate = Convert.ToDateTime(Model.SacramentMeeting.MeetingDate);
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>SpeakingAssignment</h4>
+    <h4>Speaking Assignment for @meetingDate.ToString("MM/dd/yyyy")</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SacramentMeeting)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SacramentMeeting.ID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SacramentMeeting.MeetingDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SacramentMeeting.MeetingDate)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.AssignedOnDate)
         </dt>
@@ -50,5 +39,5 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-id="@Model.SacramentMeetingID">Back to Speaking Assignment List</a>
 </div>

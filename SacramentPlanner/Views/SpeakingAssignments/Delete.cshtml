@@ -1,28 +1,17 @@
 ﻿@model SacramentPlanner.Models.SpeakingAssignment
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Speaking Assignement";
+    DateTime meetingDate = Convert.ToDateTime(Model.SacramentMeeting.MeetingDate);
 }
 
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>SpeakingAssignment</h4>
+    <h4>Speaking Assignment for @meetingDate.ToString("MM/dd/yyyy")</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SacramentMeeting)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SacramentMeeting.ID)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SacramentMeeting.MeetingDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SacramentMeeting.MeetingDate)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.AssignedOnDate)
         </dt>
@@ -51,7 +40,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-route-id="@Model.SacramentMeetingID">Back to Speaking Assignment List</a>
     </form>
 </div>

@@ -2,46 +2,45 @@
 
 @{
     ViewData["Title"] = "Create Speaking Assignment";
+    DateTime meetingDate = Convert.ToDateTime(Model.SacramentMeeting.MeetingDate);
 }
 
 <h2>Create</h2>
 
-<h4>SpeakingAssignment</h4>
+<h4>Speaking Assignment for @meetingDate.ToString("MM/dd/yyyy")</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="SacramentMeetingID" class="control-label"></label>
-                <!-- <select asp-for="SacramentMeetingID" class="form-control" asp-items="ViewBag.SacramentMeetingID"></select> -->
-                <input asp-for="SacramentMeetingID" class="form-control" value="@ViewBag.SacramentMeetingID" readonly>
-            </div>
-            <div class="form-group">
+            <input type="hidden" asp-for="SacramentMeetingID" />
+
+            <div class="form-group has-float-label">
                 <label asp-for="AssignedOnDate" class="control-label"></label>
                 <input asp-for="AssignedOnDate" class="form-control" />
                 <span asp-validation-for="AssignedOnDate" class="text-danger"></span>
             </div>
-  
-            <div class="form-group">
+
+            <div class="form-group has-float-label">
                 <label asp-for="SpeakerName" class="control-label"></label>
                 <input asp-for="SpeakerName" class="form-control" />
                 <span asp-validation-for="SpeakerName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-float-label">
                 <label asp-for="AssignedTopic" class="control-label"></label>
                 <input asp-for="AssignedTopic" class="form-control" />
                 <span asp-validation-for="AssignedTopic" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="SacramentMeetings" asp-action="Index">Back to Sacrament Planner</a> |
+    <a asp-action="Index" asp-route-id="@Model.SacramentMeetingID">Back to Speaking Assignment List</a>
 </div>
 
 @section Scripts {
