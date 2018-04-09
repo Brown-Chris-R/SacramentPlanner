@@ -63,6 +63,8 @@
                 <td>
                     @if (item.Speakers.Count > 0)
                     { <a asp-area="" asp-controller="SpeakingAssignments" asp-action="Index" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Speakers.Count)</a> }
+                    else
+                    { <a asp-area="" asp-controller="SpeakingAssignments" asp-action="Create" asp-route-id="@item.ID">Add</a>}
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ClosingPrayerName)
