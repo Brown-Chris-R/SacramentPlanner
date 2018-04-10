@@ -87,13 +87,14 @@ namespace SacramentPlanner.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,SacramentMeetingID,AssignedOnDate,SpeakingSequence,SpeakerName,AssignedTopic")] SpeakingAssignment speakingAssignment)
         {
+            speakingAssignment.ID = 0;
             if (ModelState.IsValid)
             {
                 _context.Add(speakingAssignment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index), new { id = speakingAssignment.SacramentMeetingID });
             }
-            ViewData["SacramentMeetingID"] = new SelectList(_context.SacramentMeetings, "ID", "ID", speakingAssignment.SacramentMeetingID);
+            ViewData["SacramentMeetingID"] = speakingAssignment.SacramentMeetingID;
             return View(speakingAssignment);
         }
 
