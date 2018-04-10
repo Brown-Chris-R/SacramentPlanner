@@ -21,7 +21,7 @@ namespace SacramentPlanner.Controllers
             _context = context;
         }
 
-        // GET: SpeakingAssignments
+        // GET: SpeakingAssignments for a SacramentMeetingID
         public async Task<IActionResult> Index(int? id)
         {
 
@@ -40,6 +40,37 @@ namespace SacramentPlanner.Controllers
             ViewData["SacramentMeetingID"] = id;
 
             return View(await speakingAssignments.Include(s => s.SacramentMeeting).ToListAsync());
+        }
+
+        // GET: SpeakingAssignments for searching
+        public async Task<IActionResult> SearchIndex(
+            string currentFilter,
+            string searchString,
+            int? page)
+        {
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var speakingAssignments = from s in _context.SpeakingAssignments select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                speakingAssignments = speakingAssignments.Where(s => s.SpeakerName.Contains(searchString) || s.AssignedTopic.Contains(searchString));
+            }
+            speakingAssignments = speakingAssignments.OrderBy(s => s.SacramentMeeting.MeetingDate);
+
+
+            int pageSize = 10;
+            return View(await PaginatedList<SpeakingAssignment>.CreateAsync(speakingAssignments.Include(s => s.SacramentMeeting).AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: SpeakingAssignments/Details/5

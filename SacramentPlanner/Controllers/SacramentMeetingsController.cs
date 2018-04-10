@@ -24,30 +24,32 @@ namespace SacramentPlanner.Controllers
         // GET: SacramentMeetings
         public async Task<IActionResult> Index(
             string sortOrder,
-            string currentFilter,
-            string searchString,
+            DateTime currentFilter,
+            DateTime startingDate,
             int? page)
         {
+            DateTime emptyDate = new DateTime();
+
             ViewData["CurrentSort"] = sortOrder;
             ViewData["DateSortParm"] = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
             ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
 
-            if(searchString != null)
+            if(startingDate != emptyDate)
             {
                 page = 1;
             }
             else
             {
-                searchString = currentFilter;
+                startingDate = currentFilter;
             }
 
-            ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentFilter"] = startingDate;
 
             var sacramentMeetings = from s in _context.SacramentMeetings select s;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (startingDate.ToString() != "")
             {
-                sacramentMeetings = sacramentMeetings.Where(s => s.ConductorName.Contains(searchString));
+                sacramentMeetings = sacramentMeetings.Where(s => s.MeetingDate >= startingDate);
             }
 
             switch(sortOrder)
