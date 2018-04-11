@@ -47,28 +47,15 @@
             #@Html.DisplayFor(model => model.SacramentSongNumber) - @Html.DisplayFor(model => model.SacramentSongTitle)
         </dd>
         @if (Model.Speakers.Count > 0)
-    {
-        <dt>
-            @Html.DisplayNameFor(model => model.Speakers)
-        </dt>
-        <dd>
-            <table class="table speakers-table">
-                <tr>
-                    <th>Speaker Name</th>
-                    <th>Topic</th>
-                    <th>Assigned On</th>
-                </tr>
+        {
+                int i = 1;
                 @foreach (var item in Model.Speakers.OrderBy(s => s.SpeakingSequence))
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.SpeakerName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.AssignedTopic)</td>
-                    <td>@Html.DisplayFor(modelItem => item.AssignedOnDate)</td>
-                </tr>
+                {
+                    <dt>Speaker #@i </dt>
+                    <dd>@Html.DisplayFor(modelItem => item.SpeakerName)</dd>
+                    i++;
+                }
         }
-            </table>
-        </dd>
-}
         @if (Model.IntermediateSongNumber > 0)
         {
         <dt>
