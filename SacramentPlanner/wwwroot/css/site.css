@@ -5,11 +5,13 @@
     background-color: floralwhite;
 }
 .jumbotron {
-    background: url("/images/sacrament-meeting.jpg") no-repeat center center;
+    background: url("/images/christ-teaching-the-people-39554-print.jpg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 380px;
+    margin-bottom: 15px!important;
 }
 
 .jumbotron h1, .jumbotron .h1 {
@@ -39,27 +41,31 @@
 /* Navbar customizations */
 .navbar {
     font-family: 'Cormorant Garamond', serif;
-    background-color: darkred;
+    background-color: #3c4d71;
     border-color: #080808;
     line-height: 26px;
 }
 
 .navbar-inverse .navbar-brand {
     font-size: 26px;
-    color: bisque;
+    color: white;
 }
 .navbar .navbar-nav {
     font-size: 20px;
 }
 .navbar-inverse .navbar-nav > li > a {
-    color: bisque;
+    color: white;
 }
 
     .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
         text-decoration: none;
         /*color: lime;*/
-        background-color: firebrick;
+        background-color: steelblue;
     }
+
+.navbar form a {
+    font-size: 14px;
+}
 
 /* QR code generator */
 #qrCode {
