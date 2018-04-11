@@ -29,16 +29,10 @@
             @Html.DisplayFor(model => model.ConductorName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.OpeningSongNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OpeningSongNumber)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.OpeningSongTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.OpeningSongTitle)
+            #@Html.DisplayFor(model => model.OpeningSongNumber) - @Html.DisplayFor(model => model.OpeningSongTitle)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.OpeningPrayerName)
@@ -47,19 +41,13 @@
             @Html.DisplayFor(model => model.OpeningPrayerName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SacramentSongNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SacramentSongNumber)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.SacramentSongTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SacramentSongTitle)
+            #@Html.DisplayFor(model => model.SacramentSongNumber) - @Html.DisplayFor(model => model.SacramentSongTitle)
         </dd>
-        @if(Model.Speakers.Count > 0)
-        {
+        @if (Model.Speakers.Count > 0)
+    {
         <dt>
             @Html.DisplayNameFor(model => model.Speakers)
         </dt>
@@ -71,40 +59,30 @@
                     <th>Assigned On</th>
                 </tr>
                 @foreach (var item in Model.Speakers.OrderBy(s => s.SpeakingSequence))
-                {
+            {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.SpeakerName)</td>
                     <td>@Html.DisplayFor(modelItem => item.AssignedTopic)</td>
                     <td>@Html.DisplayFor(modelItem => item.AssignedOnDate)</td>
                 </tr>
-                }
-            </table>
-         </dd>
         }
-        <dt>
-            @Html.DisplayNameFor(model => model.IntermediateSongNumber)
-        </dt>
-        <dd>
-            @if (Model.IntermediateSongNumber > 0) 
-            { @Html.DisplayFor(model => model.IntermediateSongNumber) }
+            </table>
         </dd>
+}
+        @if (Model.IntermediateSongNumber > 0)
+        {
         <dt>
             @Html.DisplayNameFor(model => model.IntermediateSongTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.IntermediateSongTitle)
+            <text>#</text>@Html.DisplayFor(model => model.IntermediateSongNumber) <text> - </text> @Html.DisplayFor(model => model.IntermediateSongTitle)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ClosingSongNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ClosingSongNumber)
-        </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.ClosingSongTitle)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ClosingSongTitle)
+            #@Html.DisplayFor(model => model.ClosingSongNumber) - @Html.DisplayFor(model => model.ClosingSongTitle)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ClosingPrayerName)
