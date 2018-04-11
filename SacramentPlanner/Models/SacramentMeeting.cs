@@ -33,7 +33,7 @@ namespace SacramentPlanner.Models
         public ICollection<SpeakingAssignment> Speakers { get; set; }
         [Range(0, 341)]
         [Display(Name = "Rest Hymn #")]
-        public int IntermediateSongNumber { get; set; }
+        public int? IntermediateSongNumber { get; set; }
         [Display(Name = "Rest Hymn")]
         public string IntermediateSongTitle { get; set; }
         [Range(1, 341)]
