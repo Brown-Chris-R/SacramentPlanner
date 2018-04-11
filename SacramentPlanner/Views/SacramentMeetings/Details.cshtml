@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    bool restHymnInMiddle = false;
 }
 
 <h2>Details</h2>
@@ -51,19 +52,29 @@
                 int i = 1;
                 @foreach (var item in Model.Speakers.OrderBy(s => s.SpeakingSequence))
                 {
+                    @if(item.SpeakingSequence > 25 && Model.IntermediateSongNumber > 0)
+                    {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.IntermediateSongTitle)
+                            </dt>
+                            <dd>
+                                <text>#</text>@Html.DisplayFor(model => model.IntermediateSongNumber) <text> - </text> @Html.DisplayFor(model => model.IntermediateSongTitle)
+                            </dd>
+                            restHymnInMiddle = true;
+                    }
                     <dt>Speaker #@i </dt>
                     <dd>@Html.DisplayFor(modelItem => item.SpeakerName)</dd>
                     i++;
                 }
         }
-        @if (Model.IntermediateSongNumber > 0)
+        @if (!restHymnInMiddle && Model.IntermediateSongNumber > 0)
         {
-        <dt>
-            @Html.DisplayNameFor(model => model.IntermediateSongTitle)
-        </dt>
-        <dd>
-            <text>#</text>@Html.DisplayFor(model => model.IntermediateSongNumber) <text> - </text> @Html.DisplayFor(model => model.IntermediateSongTitle)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IntermediateSongTitle)
+            </dt>
+            <dd>
+                <text>#</text>@Html.DisplayFor(model => model.IntermediateSongNumber) <text> - </text> @Html.DisplayFor(model => model.IntermediateSongTitle)
+            </dd>
         }
         <dt>
             @Html.DisplayNameFor(model => model.ClosingSongTitle)
