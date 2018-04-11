@@ -14,7 +14,10 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
-            <input type="hidden" asp-for="SacramentMeetingID" />
+            <div class="form-group has-float-label">
+                <label asp-for="SacramentMeetingID" class="control-label"></label>
+                <select asp-for="SacramentMeetingID" class="form-control" asp-items="ViewBag.SacramentMeetingID"></select>
+            </div>
             <div class="form-group has-float-label">
                 <label asp-for="AssignedOnDate" class="control-label"></label>
                 <input asp-for="AssignedOnDate" class="form-control" />
