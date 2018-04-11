@@ -142,7 +142,7 @@ namespace SacramentPlanner.Controllers
             {
                 return NotFound();
             }
-            ViewData["SacramentMeetingID"] = new SelectList(_context.SacramentMeetings, "ID", "ID", speakingAssignment.SacramentMeetingID);
+            ViewData["SacramentMeetingID"] = new SelectList(_context.SacramentMeetings, "ID", "MeetingDate", speakingAssignment.SacramentMeetingID);
             return View(speakingAssignment);
         }
 
