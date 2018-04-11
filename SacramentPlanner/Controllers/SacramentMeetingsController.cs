@@ -15,10 +15,18 @@ namespace SacramentPlanner.Controllers
     public class SacramentMeetingsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly BishopbricList bl;
 
         public SacramentMeetingsController(ApplicationDbContext context)
         {
             _context = context;
+            bl = new BishopbricList();
+            bl.LeaderList = new List<Bishopbric>
+            {
+                new Bishopbric {LeaderName = "Jerry Smith", Position = "Bishop"},
+                new Bishopbric {LeaderName = "Jack Johnson", Position = "1st Counselor"},
+                new Bishopbric {LeaderName = "John Miller", Position = "2nd Counselor"},
+            };
         }
 
         // GET: SacramentMeetings
@@ -95,6 +103,7 @@ namespace SacramentPlanner.Controllers
         // GET: SacramentMeetings/Create
         public IActionResult Create()
         {
+            ViewData["Bishopbric"] = new SelectList(bl.LeaderList, "LeaderName", "LeaderName");
             return View();
         }
 
@@ -127,6 +136,7 @@ namespace SacramentPlanner.Controllers
             {
                 return NotFound();
             }
+            ViewData["Bishopbric"] = new SelectList(bl.LeaderList, "LeaderName", "LeaderName", sacramentMeeting.ConductorName);
             return View(sacramentMeeting);
         }
 
